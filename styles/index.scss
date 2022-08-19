@@ -1,0 +1,500 @@
+video {
+  max-width: 700px;
+  max-height: 436px;
+  width: 100%; }
+
+body {
+  background: #f5f5f5;
+  font-family: 'arial';
+  text-align: center;
+  border: 0;
+  margin: 0;
+  font-size: 19.2px; }
+
+.banner {
+  width: 100%;
+  background-color: #125687; }
+  .banner img {
+    max-height: 40px;
+    width: auto;
+    padding: 10px 0; }
+
+.full-width {
+  width: 100%; }
+
+#hint {
+  -webkit-transform: translate3d(0, 0, 0);
+  /*display:none;*/
+  cursor: pointer;
+  margin: auto;
+  opacity: 0;
+  font-size: 16px;
+  color: #8d8d8d;
+  border-radius: 300px;
+  text-align: center;
+  z-index: 5000;
+  pointer-events: none;
+  animation: appear .8s linear;
+  animation-delay: 1s;
+  animation-fill-mode: forwards; }
+  #hint.up {
+    animation: appearup .8s linear;
+    animation-delay: 1s;
+    animation-fill-mode: forwards; }
+  #hint.last {
+    animation: appearlast .8s linear;
+    animation-delay: 1s;
+    animation-fill-mode: forwards; }
+  #hint p {
+    display: none; }
+
+#fallback {
+  color: #8d8d8d;
+  position: absolute;
+  bottom: .5%;
+  padding:0;
+  margin:0;
+  text-align: center;
+  width: 100%; }
+
+.error:link, .error:visited, .error:active {
+  color: #8d8d8d;
+  text-decoration: none;
+  font-weight: bold; }
+
+#content {
+  position: relative;
+  width: 700px;
+  max-width: 90%;
+  margin: 0 auto; }
+
+.preserve {
+  /*transform: translateZ(1000px);*/
+  /*transform-style: preserve-3d;*/
+  transform-style: preserve-3d; }
+
+.card {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  margin: 0 auto; }
+  .card .left, .card .right, .card .center, .card .top, .card .bottom, .card .top2, .card .bottom2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    transition: 1s;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    position: relative; }
+  .card .left {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: 1fr; }
+  .card .right {
+    grid-column: 3/5;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: 1fr; }
+  .card.hint .right {
+    transform: rotateY(15deg);
+    z-index: 8000; }
+  .card.hint .left {
+    transform: rotateY(-15deg);
+    z-index: 6000; }
+  .card.hint .top {
+    transform: rotateX(15deg); }
+  .card.hint .top2 {
+    transform: rotateX(15deg); }
+  .card.hint .bottom {
+    transform: rotateX(-15deg);
+    z-index: 8000; }
+  .card.hint .bottom2 {
+    transform: rotateX(-15deg);
+    z-index: 8000; }
+  .card.tease {
+    position: relative;
+    background-image: url("../images/BEST_WISHES.png");
+    background-size: contain; }
+    .card.tease .left .front:before {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 150%;
+      background-color: #000;
+      position: absolute;
+      top: 0;
+      transition: 1s;
+      opacity: .5; }
+    .card.tease:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 25%;
+      height: 100%;
+      background-color: #f5f5f5; }
+    .card.tease:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 25%;
+      height: 100%;
+      background-color: #f5f5f5; }
+    .card.tease .left {
+      transform: rotateY(-30deg); }
+    .card.tease .right {
+      transform: rotateY(30deg);
+      z-index: 1; }
+  .card .top {
+    grid-column: 1/5;
+    grid-row: 1; }
+  .card .bottom {
+    grid-column: 1/5;
+    grid-row: 2; }
+  .card .center {
+    grid-column: 2/4;
+    grid-row: 1/1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: 1s;
+    z-index: 0; }
+    .card .center:after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      position: absolute;
+      top: 0;
+      transition: 1s;
+      opacity: .5; }
+  .card.open .right {
+    transform: rotateY(180deg); }
+  .card.open .left {
+    transform: rotateY(-180deg); }
+  .card.open .top {
+    transform: rotateX(180deg); }
+  .card.open .top2 {
+    transform: rotateX(180deg);
+    animation: disappear .1s linear;
+    animation-delay: .25s;
+    -moz-animation-delay: .25s;
+    animation-fill-mode: forwards; }
+  .card.open .bottom {
+    transform: rotateX(-180deg); }
+  .card.open .bottom2 {
+    transform: rotateX(-180deg);
+    animation: disappear .1s linear;
+    animation-delay: .25s;
+    animation-fill-mode: forwards; }
+  .card.open:not(.horizontal) .center {
+    animation: move 2s linear alternate;
+    animation-fill-mode: forwards; }
+    .card.open:not(.horizontal) .center:after {
+      transition: .2s;
+      transition-delay: .2s;
+      opacity: 0; }
+  .card.open.horizontal .center:after {
+    transition: 0s;
+    transition-delay: 0s;
+    opacity: 0; }
+  .card .left .front, .card .left .back, .card .right .front, .card .right .back {
+    grid-column: 1/1;
+    grid-row: 1/1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    -webkit-perspective: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    visibility: visible;
+    backface-visibility: hidden; }
+  .card .left .back, .card .right .back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    grid-row: 1/1; }
+  .card .top, .card .bottom, .card .top2, .card .bottom2 {
+    display: grid;
+    grid-column: 1/5;
+    z-index: 1; }
+    .card .top .front, .card .top .back, .card .bottom .front, .card .bottom .back, .card .top2 .front, .card .top2 .back, .card .bottom2 .front, .card .bottom2 .back {
+      grid-column: 1/5;
+      grid-row: 1/1;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      -webkit-perspective: 0;
+      -webkit-backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      visibility: visible;
+      backface-visibility: hidden; }
+    .card .top .back, .card .bottom .back, .card .top2 .back, .card .bottom2 .back {
+      -webkit-transform: rotateX(180deg);
+      transform: rotateX(180deg);
+      grid-row: 1/1; }
+  .card .top2 {
+    grid-row: 1;
+    transform-origin: bottom center; }
+  .card .top, .card .center-top {
+    grid-row: 2;
+    transform-origin: top center; }
+  .card .bottom {
+    grid-row: 3;
+    transform-origin: bottom center; }
+  .card .bottom2 {
+    grid-row: 4;
+    transform-origin: top center; }
+  .card.horizontal {
+    position: relative;
+    background-image: url("../images/BEST_WISHES.png");
+    background-size: 100% 101%;
+    background-position-y: 7%; }
+    .card.horizontal:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 25%;
+      background-color: #f5f5f5; }
+    .card.horizontal:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 25%;
+      background-color: #f5f5f5;
+      z-index: 0; }
+    .card.horizontal .center {
+      grid-row: 2/4;
+      grid-column: 1/6;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr; }
+      .card.horizontal .center .tile {
+        background-size: 100% 207%;
+        background-repeat: no-repeat; }
+        @media (min-width: 700px) {
+          .card.horizontal .center .tile {
+            background-size: 100% 200%; } }
+        .card.horizontal .center .tile.fix-bottom {
+          background-position: 0 100%; }
+        .card.horizontal .center .tile.fix-top {
+          background-position: 0 0; }
+        .card.horizontal .center .tile.empty:after {
+          background-color: transparent; }
+  .card.plus {
+    position: relative;
+    background-image: url("../images/BEST_WISHES.png");
+    background-size: 100% 100%; }
+    .card.plus .tile.empty::after {
+      background-color: transparent; }
+    .card.plus .right {
+      z-index: 1; }
+    .card.plus.hint .right {
+      z-index: 8000; }
+    .card.plus.open .front {
+      animation: disappear .1s linear;
+      animation-delay: .25s;
+      animation-fill-mode: forwards; }
+    .card.plus:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 25%;
+      height: 100%;
+      background-color: #f5f5f5; }
+    .card.plus:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 25%;
+      height: 100%;
+      background-color: #f5f5f5; }
+  .card .tile.wgbh-left, .card .tile.wgbh-right {
+    padding-bottom: 0; }
+
+.tile {
+  padding-bottom: 124%;
+  display: block;
+  background-size: cover;
+  position: relative; }
+  .tile.top-half:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 50%;
+    bottom: 0; }
+  .tile.bottom-half:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 50%;
+    top: 0; }
+  .tile.empty:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 100%;
+    top: 0; }
+
+.top .tile, .top2 .tile, .bottom .tile, .bottom2 .tile, .horizontal .center .tile {
+  padding-bottom: 62%; }
+
+.top2 .tile, .bottom .tile {
+  background-size: 100% 200%;
+  background-repeat: no-repeat; }
+.top2 .back .tile, .bottom .back .tile {
+  background-position: 0 100%; }
+
+.top .tile, .bottom2 .tile {
+  background-size: 100% 200%;
+  background-position: 0 100%;
+  background-repeat: no-repeat; }
+.top .back .tile, .bottom2 .back .tile {
+  background-position: 0 0; }
+
+.open .transparent {
+  animation: disappear 0s linear;
+  animation-fill-mode: forwards; }
+
+.end .top .wgbh-top, .end .top .wgbh-bottom, .end .top .wgbh-mid, .end .top .wgbh-mid2, .end .top2 .wgbh-top, .end .top2 .wgbh-bottom, .end .top2 .wgbh-mid, .end .top2 .wgbh-mid2, .end .bottom .wgbh-top, .end .bottom .wgbh-bottom, .end .bottom .wgbh-mid, .end .bottom .wgbh-mid2, .end .bottom2 .wgbh-top, .end .bottom2 .wgbh-bottom, .end .bottom2 .wgbh-mid, .end .bottom2 .wgbh-mid2 {
+  background-image: url("../images/BEST_WISHES.png");
+  background-size: 100% 400%; }
+.end .top .wgbh-top, .end .top2 .wgbh-top, .end .bottom .wgbh-top, .end .bottom2 .wgbh-top {
+  background-position: 100% 0%; }
+.end .top .wgbh-mid, .end .top2 .wgbh-mid, .end .bottom .wgbh-mid, .end .bottom2 .wgbh-mid {
+  background-position: 100% 33.3%; }
+.end .top .wgbh-mid2, .end .top2 .wgbh-mid2, .end .bottom .wgbh-mid2, .end .bottom2 .wgbh-mid2 {
+  background-position: 100% 66.8%; }
+.end .top .wgbh-bottom, .end .top2 .wgbh-bottom, .end .bottom .wgbh-bottom, .end .bottom2 .wgbh-bottom {
+  background-position: 100% 100%; }
+.end .top .front .tile, .end .top2 .front .tile, .end .bottom .front .tile, .end .bottom2 .front .tile {
+  padding-bottom: 1.04%;
+  grid-column: span 5; }
+
+.cello {
+  background-image: url("../images/CELLO.png"); }
+
+.painting {
+  background-image: url("../images/PAINTING.png"); }
+
+.girls {
+  background-image: url("../images/GIRLS.png"); }
+
+.declaration {
+  background-image: url("../images/DECLARATION.png"); }
+
+.cake {
+  background-image: url("../images/CAKE.png"); }
+
+.mic {
+  background-image: url("../images/MIC.png"); }
+
+.elements {
+  background-image: url("../images/ELEMENTS.png"); }
+
+.woman {
+  background-image: url("../images/WOMAN.png"); }
+
+.behind {
+  background-image: url("../images/BEHIND_ALL_OUR.png"); }
+
+.programs {
+  background-image: url("../images/PROGRAMS_AND_SERVICES.png"); }
+
+.exists {
+  background-image: url("../images/THERE_EXISTS.png"); }
+
+.mission {
+  background-image: url("../images/SINGLE_MISSION.png"); }
+
+.wgbh-left, .wgbh-right, .wgbh-mid-left, .wgbh-mid-right {
+  background-image: url("../images/BEST_WISHES.png");
+  background-size: 400% 100.2%; }
+  .wgbh-left.bottom-half, .wgbh-left.top-half, .wgbh-right.bottom-half, .wgbh-right.top-half, .wgbh-mid-left.bottom-half, .wgbh-mid-left.top-half, .wgbh-mid-right.bottom-half, .wgbh-mid-right.top-half {
+    background-size: 400%; }
+  .wgbh-left.top-half, .wgbh-right.top-half, .wgbh-mid-left.top-half, .wgbh-mid-right.top-half {
+    background-position: 100% 296.9%; }
+
+.wgbh-right {
+  background-position: 99.9% 54%; }
+
+.wgbh-mid-left {
+  background-position: 33% 100%; }
+
+.wgbh-mid-right {
+  background-position: 66% 100%; }
+
+.wgbh-top, .wgbh-bottom {
+  background-image: url("../images/BEST_WISHES.png");
+  background-size: 100% 200%; }
+
+#card-states {
+  display: grid;
+  grid-template-columns: 1fr; }
+
+#state-1, #state-2, #state-3, #state-4 {
+  grid-row: 1; }
+
+.tease {
+  display: none; }
+
+@keyframes appear {
+  0%,40% {
+    opacity: 1;
+    left: 60%; }
+  40%, 60% {
+    opacity: 1;
+    left: -10%; }
+  60%, 100% {
+    opacity: 1;
+    left: 0;
+    z-index: 9000; } }
+@keyframes appearup {
+  0%,40% {
+    opacity: 1;
+    top: 50%; }
+  40%, 60% {
+    opacity: 1;
+    top: 20%; }
+  60%, 100% {
+    opacity: 1;
+    top: 34%;
+    z-index: 9000; } }
+@keyframes appearlast {
+  0%,1% {
+    right: -45%;
+    opacity: 0; }
+  1%,60% {
+    top: 66%;
+    right: -45%; }
+  60%, 100% {
+    opacity: 1;
+    top: 62%;
+    right: -45%; } }
+@keyframes disappear {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+@-webkit-keyframes disappear {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+@keyframes move {
+  from {
+    z-index: 0; }
+  to {
+    z-index: 4; } }
+@-webkit-keyframes move {
+  from {
+    z-index: 0; }
+  to {
+    z-index: 4; } }
+
+/*# sourceMappingURL=index.css.map */
